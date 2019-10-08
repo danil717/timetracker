@@ -4,58 +4,37 @@
     box-sizing: border-box;
 }
 
-header{
-    background-color: rgb(72, 218, 218);
-    height: 250px;
+body{
+  background-color: rgb(231, 241, 255);
 }
 
-.clearfix:after{
-    content: '';
-    display: table;
-    width: 100%;
-    clear: both;
+header{
+    background-color: rgb(72, 218, 218);
+    height: 75px;
 }
 
 .container{
-  width: 90%;
-  margin: auto;
+    width: 80%;
+    margin: auto
 }
 
 .logo{
-    height: 100px;
+    height: 70px;
     float: left;
 }
 
-.heading nav{
-    float: right;
-    margin-top: 20px;
-}
-
-.header__menu{
-    display: block;
+header nav{
+  margin-top: 20px;
+  float: right;
 }
 
 .header__menu li{
     float: left;
-    margin-right: 100px;
+    margin-left: 75px;
     list-style-type: none;
 }
 
 .header__menu a{
     text-decoration: none;
     font-size: 20px;
-}
-
-.titles__first{
-    font-size: 40px;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-header .title h1{
-    font-size: 75px;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
 }
