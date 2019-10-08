@@ -4,5 +4,6 @@ class Project < ApplicationRecord
   validates :description, :length  => { :maximum => 240 }
 
   belongs_to :customer
+  has_many :tasks
 
 end
