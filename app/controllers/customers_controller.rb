@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_user_admin
+  
   # GET /customers
   # GET /customers.json
   def index
@@ -70,5 +71,9 @@ class CustomersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:name)
+    end
+
+    def check_user_admin
+      redirect_to root_path unless current_user.admin?
     end
 end
