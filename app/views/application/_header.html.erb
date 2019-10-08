@@ -1,20 +1,23 @@
 <header>
    <div class="container">
-      <div class="heading clearfix">
-         <img src="https://placeit-assets.s3-accelerate.amazonaws.com/landing-pages/landing-page-redo-make-a-gaming-logo/Deadnauts-Esports-Logo-Maker.png" class='logo' alt="logo">
+         <img src="http://todo-list.ch/wp-content/uploads/2016/10/logo_script_blue_00-1.png" class='logo' alt="logo">
          <nav>
             <ul class="header__menu">
-               <li><a class='header__home' href="#">Home</a></li>
-               <li><a class='header__tasks' href="#">Tasks</a></li>
-               <li><a href="#">Sign in / Sign up</a></li>
-               <li><a href="#">Log out</a></li>
+               <li><%= link_to "Home", root_path, id: "home" %></li>
+               <li><%= link_to "Tasks", root_path, id: "tasks" %></li>
+               <% if current_user %>
+                 <li>
+                   <%= link_to('Logout', destroy_user_session_path, method: :delete, id:"logout") %>
+                 </li>
+               <% else %>
+                 <li>
+                   <%= link_to('Register', new_user_registration_path, id:"register") %>
+                 </li>
+                 <li>
+                   <%= link_to('Login', new_user_session_path, id: "login") %>
+                 </li>
+               <% end %>
             </ul>
          </nav>
-      </div>
-      <div class="title">
-         <div class="titles__first">Welcome to Time Table</div>
-         <h1>Easy to use</h1>
-      </div>
    </div>
-
 </header>
