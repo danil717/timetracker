@@ -1,10 +1,16 @@
 document.addEventListener('turbolinks:load', function() {
-  let start = document.getElementById('start');
+  
+  let link = window.location.href.split('/');
+  if(link[3] == '') {
+    let start = document.getElementById('start');
 
-  start.addEventListener('click', (e) => {
-      let btn = document.getElementsByClassName('hidden_btn')
-      for (let i of btn) {
-          i.hidden = false
-      };
-  });
+    start.onclick = function() {
+        let btn = document.getElementsByClassName('hidden_btn')
+        for (let i of btn) {
+            i.hidden = false
+        };
+        this.hidden = true
+    };
+  }
+
 })
