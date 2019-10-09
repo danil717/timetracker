@@ -395,3 +395,40 @@ main button {
   background-color: #e9ecef;
   opacity: 1;
 }
+
+main .table {
+  font-size: 20px;
+  background: #fff;
+  margin: auto;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-bottom: 1px dashed rgb(59, 184, 247);
+}
+
+#task__title {
+  font-size: 30px;
+  color: #EC542A;
+  text-align: center;
+  border: none;
+}
+
+.table th {
+  border: 2px solid #6678b1;
+  color: #039;
+  padding: 10px 20px;
+}
+
+.table td {
+  border-collapse: collapse;
+  border-right: 1px dashed rgb(59, 184, 247);
+  border-left: 1px dashed rgb(59, 184, 247);
+  padding: 10px 20px;
+  color: #669;
+}
+
+.table tr:hover td {
+  background: #ccddff;
+  transition: .3s linear;
+}
