@@ -74,6 +74,10 @@ class ProjectsController < ApplicationController
     end
 
     def check_user_admin
-      redirect_to root_path unless current_user.admin?
+      if current_user
+        redirect_to root_path unless current_user.admin?
+      else
+        redirect_to new_user_session_path
+      end
     end
 end
