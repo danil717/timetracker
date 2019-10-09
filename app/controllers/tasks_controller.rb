@@ -1,16 +1,22 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :check_user
 
   # GET /tasks
   # GET /tasks.json
   def index
    # @tasks = Task.all
      # @tasks = current_user.tasks
-    if current_user.admin? 
-      @tasks = Task.all
-    else 
-      @tasks = current_user.tasks
+    if current_user
+      if current_user.admin?
+        @tasks = Task.all
+      else
+        @tasks = current_user.tasks
+      end
+    else
+      redirect_to new_user_session_path
     end
+
   end
 
   # GET /tasks/1
@@ -77,5 +83,13 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:project_id, :end_time, :description)
+    end
+
+    def check_user
+      if current_user
+        #redirect_to root_path unless current_user.admin? 
+      else
+        redirect_to new_user_session_path
+      end
     end
 end
