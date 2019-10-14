@@ -2,17 +2,21 @@
   <div class="container">
      <div id='inputs'>
         <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
-        <form method='POST' action="" value=''>
-           <select id='select' class="btn btn-outline-secondary dropdown-toggle" type="button">
-              <option>Select Project</option>
-              <option>Project1</option>
-              <option>Project2</option>
-           </select>
-           <input id='description' class='form-control' type="text" name="" id="">
-           <button class='btn btn-success' id='start' type="button">Start</button>
-           <button class="hidden_btn btn btn-warning" hidden>Pause</button>
-           <button class="hidden_btn btn btn-danger" hidden>Stop</button>
-        </form>
+        <%= form_with(model: @task, local: true) do |form| %>
+          <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'ExampleClass'}) %> 
+          <input id='description' class='form-control' type="text" name="" id="">
+          <button class='btn btn-success' id='start' type="button">Start</button>
+          <button class="hidden_btn btn btn-warning" hidden>Pause</button>
+          <button class="hidden_btn btn btn-danger" hidden>Stop</button>
+        <% end %>
+        
+    <div class="form-inputs">
+ 
+  </div>
+
+  
+   
+
     </div>
     <table class="table">
        <tr>
