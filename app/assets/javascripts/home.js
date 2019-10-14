@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
-  
+
   let link = window.location.href.split('/');
   if(link[3] == '') {
     let start = document.getElementById('start');
