@@ -82,12 +82,12 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:project_id, :end_time, :description)
+      params.require(:task).permit(:project_id, :end_time, :description, :name)
     end
 
     def check_user
       if current_user
-        #redirect_to root_path unless current_user.admin? 
+        #redirect_to root_path unless current_user.admin?
       else
         redirect_to new_user_session_path
       end
