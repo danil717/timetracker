@@ -68,12 +68,9 @@ main button {
   z-index: 2;
 }
 
-#description {
-  position: relative;
-  margin-left: -5px;
-  margin-bottom: 20px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+#error {
+  font-size: 15px;
+  color: #ff0000;
 }
 
 .btn {
@@ -345,8 +342,13 @@ main button {
 
 .form-control {
   transition: none;
+  position: relative;
+  margin-bottom: 25px;
+  margin-left: -5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
-}
+
 
 .form-control::-ms-expand {
   background-color: transparent;
