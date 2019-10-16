@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
     #debugger
     
     @task = Task.new
-  end
 
+    @todayTasks = Task.select('*, projects.name AS project_name, tasks.description AS task_description').joins(:project).where('tasks.created_at >= ?', Date.today)
+     
+    
+  
+  end
 end

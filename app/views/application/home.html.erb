@@ -1,7 +1,8 @@
 <main>
   <div class="container">
-     <div id='inputs'>
+     <div id='inputs'>   
         <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
+        <%= render 'tasks/form', task: @task %>
         <%= form_with(model: @task, local: true) do |form| %>
           <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'ExampleClass'}) %> 
           <input id='description' class='form-control' type="text" name="" id="">
@@ -13,38 +14,25 @@
     <div class="form-inputs">
  
   </div>
-
-  
-   
-
-    </div>
     <table class="table">
        <tr>
           <th id='task__title' colspan="4">Today</th>
        </tr>
        <tr>
-          <th>Today</td>
+          <th>Name project</td>
           <th>Task</td>
-          <th>Start/End time</td>
+          <th>Start/end time</td>          
           <th>Full time</td>
        </tr>
+          <% @todayTasks.each do |task| %>
        <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
+          <td><%= task.project_name %></td>
+          <td><%= task.task_description %></td>
+          <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>          
+          <td><%= full_t(task.end_time, task.created_at)%></td>
+          </td>
        </tr>
-       <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-       </tr>
-       <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-       </tr>
+       <br>
+          <% end %>
     </table>
 </main>
