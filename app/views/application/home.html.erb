@@ -3,26 +3,24 @@
      <div id='inputs'>   
         <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
         <%= render 'tasks/form', task: @task %>
-        <%= form_with(model: @task, local: true) do |form| %>
-          <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'ExampleClass'}) %> 
-          <input id='description' class='form-control' type="text" name="" id="">
-          <button class='btn btn-success' id='start' type="button">Start</button>
-          <button class="hidden_btn btn btn-warning" hidden>Pause</button>
-          <button class="hidden_btn btn btn-danger" hidden>Stop</button>
+        <%= form_for(@task, remote: true) do |form| %>
+          <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+          <%= form.text_field :description, class: "form-control", id: "description"%>
+          <%= form.submit "Start", class: "btn btn-success", id: "start"%>
+          <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
+          <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
         <% end %>
-        
-    <div class="form-inputs">
- 
-  </div>
+        <ins id="error" hidden>Error! Task haven't started!</ins>
+    </div>
     <table class="table">
        <tr>
           <th id='task__title' colspan="4">Today</th>
        </tr>
        <tr>
-          <th>Name project</td>
-          <th>Task</td>
-          <th>Start/end time</td>          
-          <th>Full time</td>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Start/End time</th>
+          <th>Full time</th>
        </tr>
           <% @todayTasks.each do |task| %>
        <tr>
