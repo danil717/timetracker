@@ -3,12 +3,9 @@ class ApplicationController < ActionController::Base
     #debugger
     
     @task = Task.new
+
     if current_user
-      if current_user.admin? && params[:user_id].present?
-        @todayTasks = Task.select('*, projects.name AS project_name, tasks.description AS task_description').joins(:project).where('tasks.created_at >= ?', Date.today)
-      else
-        @todayTasks = Task.select('*, projects.name AS project_name, tasks.description AS task_description').joins(:project).where('user_id = ?', current_user).where('tasks.created_at >= ?', Date.today)
-      end
+      @todayTasks = Task.select('*, projects.name AS project_name, tasks.description AS task_description').joins(:project).where('user_id = ?', current_user).where('tasks.created_at >= ?', Date.today)
     end
 
     

@@ -5,13 +5,8 @@
 
   <div class="form-inputs">
     <%= form_for(@task, remote: true) do |form| %>
-   <% if current_user %>
-      <% if current_user.admin? %>
+      <% if current_user %>
         <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-        <%= f.select(:user_id, users_for_select, {prompt: 'Select users'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-      <% else %>
-        <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-      <% end %>
         <%= form.text_field :description, class: "form-control", id: "description"%>
         <%= form.submit "Start", class: "btn btn-success", id: "start"%>
         <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
