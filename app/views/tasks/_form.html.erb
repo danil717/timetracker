@@ -4,19 +4,23 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <% if current_user %>
+    <%= form_for(@task, remote: true) do |form| %>
+   <% if current_user %>
       <% if current_user.admin? %>
-        <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
-        <%= f.select(:user_id, users_for_select, :prompt => 'Select users') %>
+        <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+        <%= f.select(:user_id, users_for_select, {prompt: 'Select users'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
       <% else %>
-        <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
+        <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
       <% end %>
-        <%= f.input :end_time %>
-        <%= f.input :description %>
-    <% end %>
+        <%= form.text_field :description, class: "form-control", id: "description"%>
+        <%= form.submit "Start", class: "btn btn-success", id: "start"%>
+        <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
+        <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
+    <% end %>      
+  <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  
+  
+  
 <% end %>
