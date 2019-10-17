@@ -16,18 +16,20 @@
           <th>Start/End time</th>
           <th>Full time</th>
        </tr>
-          <% @todayTasks.each do |task| %>
+          <% if current_user %>
+            <% @todayTasks.each do |task| %>
        <tr>
-          <td><%= task.project_name %></td>
-          <td><%= task.task_description %></td>
-          <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>
-            <% if task.end_time == nil %> 
-              <td></td>      
-            <% else %>
-              <td><%= full_t(task.end_time, task.created_at)%></td>
-            <% end %>
-          </td>
+              <td><%= task.project_name %></td>
+              <td><%= task.task_description %></td>
+              <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>
+                <% if task.end_time == nil %> 
+                  <td></td>      
+                <% else %>
+                  <td><%= full_t(task.end_time, task.created_at)%></td>
+                <% end %>
+              </td>
        </tr>
+            <% end %>
           <% end %>
     </table>
 </main>
