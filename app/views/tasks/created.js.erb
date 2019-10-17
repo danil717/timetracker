@@ -1,0 +1,31 @@
+let btn = document.getElementsByClassName('hidden_btn')
+let start = document.getElementById('start')
+let pause = document.getElementById('pause')
+let stop = document.getElementById('stop')
+
+for (let i of btn) {
+    i.hidden = false
+};
+start.hidden = true
+
+console.log("<%= @task.id%>")
+
+function stopPause() {
+  const response = fetch(url, {
+    method: 'post',
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: 'foo=bar&lorem=ipsum'
+  })
+  .then(json)
+  .then(function (data) {
+    console.log('Request succeeded with JSON response', data);
+  })
+  .catch(function (error) {
+    console.log('Request failed', error);
+  });
+}
+
+pause.addEventListener('click', stopPause)
+stop.addEventListener('click', stopPause)
