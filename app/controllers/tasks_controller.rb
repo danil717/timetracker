@@ -36,13 +36,11 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-
     if current_user.admin? && params[:user_id].present?
       @task = Task.new(task_params)
     else
       @task = current_user.tasks.new(task_params)
     end
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -50,6 +48,19 @@ class TasksController < ApplicationController
       else
         format.html { render :new }
         format.js { render :created_error }
+      end
+    end
+  end
+
+  def completion
+    #Task.find(params[:id]).update(end_time: DateTime.now)
+    respond_to do |format|
+      if Task.find(params[:id]).update(end_time: DateTime.now)
+        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { render :edit }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -86,10 +97,12 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      if current_user.admin?
-        params.require(:task).permit(:project_id, :user_id, :end_time, :description)
-      else
-        params.require(:task).permit(:project_id, :end_time, :description)
+      if current_user 
+        if current_user.admin?
+          params.require(:task).permit(:project_id, :user_id, :end_time, :description)
+        else
+          params.require(:task).permit(:project_id, :end_time, :description)
+        end
       end
     end
 
