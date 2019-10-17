@@ -36,22 +36,18 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    if current_user 
-      if current_user.admin?
-        @task = Task.new(task_params)
-      else
-        @task = current_user.tasks.new(task_params)
-      end
+    if current_user.admin? && params[:user_id].present?
+      @task = Task.new(task_params)
     else
-      redirect_to new_user_session_path
+      @task = current_user.tasks.new(task_params)
     end
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.js { render :created}
       else
         format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { render :created_error }
       end
     end
   end
