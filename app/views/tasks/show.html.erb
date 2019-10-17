@@ -20,5 +20,10 @@
   <%= @task.description %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Edit', edit_task_path(@task) %>
+
+<% if request.referer == root_url %>
+  <%= link_to 'Back', root_path %>
+<% else %>
+  <%= link_to 'Back', tasks_path %>
+<% end %>
