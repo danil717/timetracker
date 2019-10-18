@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :check_user
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :completion, :check_user_in_this_task?]
+  #before_action :check_user_in_this_task, :only [:completion]
 
   # GET /tasks
   # GET /tasks.json
@@ -53,14 +54,12 @@ class TasksController < ApplicationController
   end
 
   def completion
-    #Task.find(params[:id]).update(end_time: DateTime.now)
+    # Task.find(params[:id]).update(end_time: DateTime.now)
     respond_to do |format|
-      if Task.find(params[:id]).update(end_time: DateTime.now)
-        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+      if check_user_in_this_task? && !@task.end_time && @task.update(end_time: DateTime.now)
+        format.json { render json: 'task updated', status: :ok }
       else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { render :created_error }
       end
     end
   end
@@ -97,20 +96,22 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      if current_user 
-        if current_user.admin?
-          params.require(:task).permit(:project_id, :user_id, :end_time, :description)
-        else
-          params.require(:task).permit(:project_id, :end_time, :description)
-        end
+      if current_user.admin?
+        params.require(:task).permit(:project_id, :user_id, :description)
+      else
+        params.require(:task).permit(:project_id, :description)
       end
     end
 
+    def task_end_time
+      params.require(:task).permit(:end_time)
+    end
+
     def check_user
-      if current_user
-        #redirect_to root_path unless current_user.admin?
-      else
-        redirect_to new_user_session_path
-      end
+      redirect_to new_user_session_path unless current_user
+    end
+
+    def check_user_in_this_task?
+      @task.user_id == current_user.id
     end
 end
