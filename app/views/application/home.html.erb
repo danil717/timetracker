@@ -35,11 +35,11 @@
        <tr>
           <td><%= task.project_name %></td>
           <td><%= task.task_description %></td>
-          <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>
+          <td><%= task.task_time_created %><strong>/</strong><%= task.end_time %></td>
             <% if task.end_time == nil %>
               <td></td>
             <% else %>
-              <td><%= full_t(task.end_time, task.created_at)%></td>
+              <td><%= full_t(task.end_time, task.task_time_created)%></td>
             <% end %>
        </tr>
           <% end %>
