@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :projects
 
   resources :tasks do
-    get 'completion', on: :member
+    post 'completion', on: :member
   end
 end

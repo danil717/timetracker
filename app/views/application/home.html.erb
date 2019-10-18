@@ -2,7 +2,7 @@
   <div class="container">
      <div id='inputs'>
         <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
-        <%= render 'tasks/form', task: @task %>
+        <%= render 'tasks/form', task: @task, hidden: true%>
         <%= form_for(@task, remote: true) do |form| %>
           <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
           <%= form.text_field :description, class: "form-control", id: "description"%>

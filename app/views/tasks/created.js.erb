@@ -1,27 +1,3 @@
-let pause = document.getElementById('pause');
-let stop = document.getElementById('stop');
-
 document.dispatchEvent(new CustomEvent('start', {
   detail: {taskId: "<%= @task.id%>"}
 }));
-
-
-function stopPause() {
-  let taskId = pause.getAttribute('task__id')
-  const response = fetch(`/tasks/${taskId}/completion`, {
-    method: 'post',
-    headers: {
-      "Content-type": "application/json"
-    }
-  })
-  // .then(json)
-  .then(function (data) {
-    console.log('Request succeeded with JSON response', data);
-  })
-  .catch(function (error) {
-    console.log('Request failed', error);
-  });
-};
-
-pause.addEventListener('click', stopPause); //() => stopPause(pause.getAttribute('task__id'))
-stop.addEventListener('click', stopPause);
