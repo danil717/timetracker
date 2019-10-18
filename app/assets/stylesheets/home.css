@@ -46,6 +46,10 @@ header nav {
   margin-bottom: 20px;
 }
 
+#new_task {
+  margin: 25px 0;
+}
+
 
 /****Table *****/
 
@@ -338,17 +342,12 @@ main button {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control {
   transition: none;
   position: relative;
-  margin-bottom: 25px;
   margin-left: -5px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-
 
 .form-control::-ms-expand {
   background-color: transparent;
@@ -395,6 +394,8 @@ main button {
 }
 
 main .table {
+  top: 20px;
+  position: relative;
   font-size: 20px;
   background: #fff;
   margin: auto;
