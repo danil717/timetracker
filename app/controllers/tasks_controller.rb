@@ -38,17 +38,24 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    if current_user.admin? && params[:user_id].present?
-      @task = Task.new(task_params)
-    else
-      @task = current_user.tasks.new(task_params)
-    end
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.js { render :created}
+    @end_task = Task.where('user_id = ?', current_user).order('created_at').last(1)
+    if @end_task[0].end_time
+      if current_user.admin? && params[:user_id].present?
+        @task = Task.new(task_params)
       else
-        format.html { render :new }
+        @task = current_user.tasks.new(task_params)
+      end
+      respond_to do |format|
+        if @task.save
+          format.html { redirect_to @task, notice: 'Task was successfully created.' }
+          format.js { render :created}
+        else
+          format.html { render :new }
+          format.js { render :created_error }
+        end
+      end
+    else
+      respond_to do |format|
         format.js { render :created_error }
       end
     end
