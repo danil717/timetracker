@@ -4,15 +4,16 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    
-    <% if current_user.admin? %>
-    <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
-    <%= f.select(:user_id, users_for_select, :prompt => 'Select users') %>
-    <% else %>
-    <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
+    <% if current_user %>
+      <% if current_user.admin? %>
+        <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
+        <%= f.select(:user_id, users_for_select, :prompt => 'Select users') %>
+      <% else %>
+        <%= f.select(:project_id, projects_for_select, :prompt => 'Select name projects') %>
+      <% end %>
+        <%= f.input :end_time %>
+        <%= f.input :description %>
     <% end %>
-    <%= f.input :end_time %>
-    <%= f.input :description %>
   </div>
 
   <div class="form-actions">
