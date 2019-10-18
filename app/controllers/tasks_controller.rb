@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :check_user
   before_action :set_task, only: [:show, :edit, :update, :destroy, :completion, :check_user_in_this_task?]
   #before_action :check_user_in_this_task, :only [:completion]
+  skip_before_action :verify_authenticity_token
 
   # GET /tasks
   # GET /tasks.json
@@ -57,7 +58,7 @@ class TasksController < ApplicationController
     # Task.find(params[:id]).update(end_time: DateTime.now)
     respond_to do |format|
       if check_user_in_this_task? && !@task.end_time && @task.update(end_time: DateTime.now)
-        format.json { render json: 'task updated', status: :ok }
+        format.json { render json: 'uodate TESTETS' }
       else
         format.js { render :created_error }
       end
