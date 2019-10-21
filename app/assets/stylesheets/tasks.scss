@@ -1,3 +1,45 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tasks_table {
+  position: relative;
+  top: 20px;
+  margin-top: 20px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  background: #f0f0f0;
+  border-radius: 20px;
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+.task__title {
+  font-size: 20px;
+}
+
+.tasks_table th {
+  font-size: 22px;
+  font-weight: 300;
+  color: #F56433;
+}
+
+.tasks_table th h1 {
+  border-bottom: 2px solid #F56433;
+}
+
+.tasks_table td {
+  padding: 70px;
+  font-size: 15px;
+}
+
+a.new_task {
+  position: relative;
+  top: 20px;
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 30%;
+  float: right;
+}
