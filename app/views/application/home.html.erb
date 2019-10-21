@@ -1,25 +1,10 @@
 <main>
   <div class="container">
      <div id='inputs'>
-        <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
-        <%= render 'tasks/form', task: @task, hidden: true%>
-        <%= form_for(@task, remote: true) do |form| %>
-          <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-          <%= form.text_field :description, class: "form-control", id: "description"%>
-          <%= form.submit "", id: "submit", hidden: true %>
-          <button type="button" class="btn btn-success" id="start">Start</button>
-          <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
-          <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
-        <% end %>
-        <%= form_for(@task, remote: true) do |form| %>
-          <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-          <%= form.text_field :description, class: "form-control", id: "description"%>
-          <%= form.submit "", id: "submit", hidden: true %>
-          <button type="button" class="btn btn-success" id="start">Start</button>
-          <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
-          <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
-        <% end %>
-        <ins id="error" hidden>Error! Task haven't started!</ins>
+       <%= link_to '+Add task', new_task_path, class: 'btn btn-primary', id: 'add__task', remote: true%>
+       <!-- <input class='btn btn-primary' id='add__task' type="button" value="+Add task"> -->
+       <%= render 'tasks/form'%>
+       <ins id="error" hidden>Error! Task haven't started!</ins>
     </div>
     <table class="table">
        <tr>
@@ -35,11 +20,11 @@
        <tr>
           <td><%= task.project_name %></td>
           <td><%= task.task_description %></td>
-          <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>
+          <td><%= task.task_time_created %><strong>/</strong><%= task.end_time %></td>
             <% if task.end_time == nil %>
               <td></td>
             <% else %>
-              <td><%= full_t(task.end_time, task.created_at)%></td>
+              <td><%= full_t(task.end_time, task.task_time_created)%></td>
             <% end %>
        </tr>
           <% end %>
