@@ -55,6 +55,7 @@ header nav {
 
 #add__task {
   display: block;
+  text-decoration: none;
   width: 115px;
   color: rgb(231, 241, 255);
   margin-left: 0;
