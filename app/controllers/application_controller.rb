@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     @task = Task.new
     @todayTasks = Task.select('*, projects.name AS project_name, tasks.description AS task_description, tasks.created_at AS task_time_created').joins(:project).where('tasks.created_at >= ?', Date.today)
-
-    #@empty_task = Task.where.not(end_time: [nil, ""])
+    @end_task = Task.where('user_id = ?', current_user).order('created_at').last(1)
+    #@empty_task = Task.where.(end_time: [nil, ""]).first
   end
 end
