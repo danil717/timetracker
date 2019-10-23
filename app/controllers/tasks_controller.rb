@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @end_task = Task.where('user_id = ?', current_user).order('created_at').last(1)
-    if @end_task[0].end_time
+    # if @end_task[0].end_time
       if current_user.admin? && params[:user_id].present?
         @task = Task.new(task_params)
       else
@@ -54,18 +54,18 @@ class TasksController < ApplicationController
           format.js { render :created_error }
         end
       end
-    else
-      respond_to do |format|
-        format.js { render :created_error }
-      end
-    end
+    # else
+    #   respond_to do |format|
+    #     format.js { render :created_error }
+    #   end
+    # end
   end
 
   def completion
     # Task.find(params[:id]).update(end_time: DateTime.now)
     respond_to do |format|
       if check_user_in_this_task? && !@task.end_time && @task.update(end_time: DateTime.now)
-        format.json { render json: 'uodate TESTETS' }
+        format.json { render json: @task.to_json()}
       else
         format.js { render :created_error }
       end
