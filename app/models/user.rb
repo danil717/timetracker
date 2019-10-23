@@ -8,4 +8,10 @@ class User < ApplicationRecord
   def admin?
     role == 'admin'
   end
+
+  def havent_end_time_task?
+
+   tasks.not_finished.first
+
+  end
 end
