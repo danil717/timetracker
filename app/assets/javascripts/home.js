@@ -43,7 +43,7 @@ document.addEventListener('turbolinks:load', function() {
         td1.innerText = obj.user_id;
         td2.innerText = obj.description;
         td3.innerText = 456789
-        td4.innerText = obj1.asd;
+        td4.innerText = 'asdadafdsaf';
         tr.appendChild(td1)
         tr.appendChild(td2)
         tr.appendChild(td3)
