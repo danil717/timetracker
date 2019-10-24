@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :tasks
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'application#home'
@@ -7,4 +6,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :projects
 
+  resources :tasks do
+    post 'completion', on: :member
+  end
 end

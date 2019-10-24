@@ -46,19 +46,24 @@ header nav {
   margin-bottom: 20px;
 }
 
+#new_task {
+  margin: 25px 0;
+}
+
 
 /****Table *****/
 
 #add__task {
+  display: block;
+  text-decoration: none;
+  width: 115px;
   color: rgb(231, 241, 255);
   margin-left: 0;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 
-input,
 main button {
-  height: 33.6px;
   font-size: 20px;
   margin-left: 10px;
 }
@@ -70,19 +75,15 @@ main button {
   z-index: 2;
 }
 
-#description {
-  position: relative;
-  margin-left: -5px;
-  margin-bottom: 20px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+#error {
+  font-size: 15px;
+  color: #ff0000;
 }
 
 .btn {
   font-weight: 400;
   color: #212529;
   text-align: center;
-  vertical-align: middle;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -333,7 +334,6 @@ main button {
 
 
 .form-control {
-  top: 1.8px;
   width: 50%;
   height: 33.6px;
   font-size: 1rem;
@@ -345,11 +345,11 @@ main button {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control {
   transition: none;
-}
+  position: relative;
+  margin-left: -5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .form-control::-ms-expand {
@@ -397,6 +397,8 @@ main button {
 }
 
 main .table {
+  top: 20px;
+  position: relative;
   font-size: 20px;
   background: #fff;
   margin: auto;

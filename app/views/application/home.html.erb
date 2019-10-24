@@ -1,46 +1,24 @@
 <main>
   <div class="container">
-     <div id='inputs'>
-        <input class='btn btn-primary' id='add__task' type="button" value="+Add task">
-        <form method='POST' action="" value=''>
-           <select id='select' class="btn btn-outline-secondary dropdown-toggle" type="button">
-              <option>Select Project</option>
-              <option>Project1</option>
-              <option>Project2</option>
-           </select>
-           <input id='description' class='form-control' type="text" name="" id="">
-           <button class='btn btn-success' id='start' type="button">Start</button>
-           <button class="hidden_btn btn btn-warning" hidden>Pause</button>
-           <button class="hidden_btn btn btn-danger" hidden>Stop</button>
-        </form>
+    <div id='inputs'>
+      <%= link_to '+Add task', new_task_path, class: 'btn btn-primary', id: 'add__task', remote: true%>
+      <!-- <input class='btn btn-primary' id='add__task' type="button" value="+Add task"> -->
+      <%= render 'tasks/form'%>
+      <ins id="error" hidden>Error! Task haven't started!</ins>
     </div>
     <table class="table">
-       <tr>
-          <th id='task__title' colspan="4">Today</th>
-       </tr>
-       <tr>
-          <th>Today</td>
-          <th>Task</td>
-          <th>Start/End time</td>
-          <th>Full time</td>
-       </tr>
-       <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-       </tr>
-       <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-       </tr>
-       <tr>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-          <td>sadwa</td>
-       </tr>
+      <tr>
+        <th id='task__title' colspan="4">Today</th>
+      </tr>
+      <tr>
+        <th>Project</th>
+        <th>Task</th>
+        <th>Start/End time</th>
+        <th>Full time</th>
+      </tr>
+      <% @todayTasks.each do |task| %>
+        <%= render 'tasks/table_info', task: task %>
+      <% end %>
     </table>
+  </div>
 </main>
