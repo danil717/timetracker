@@ -10,8 +10,6 @@ class User < ApplicationRecord
   end
 
   def havent_end_time_task?
-
-   tasks.not_finished.first
-
+    tasks.not_finished.first
   end
 end

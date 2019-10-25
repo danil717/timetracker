@@ -40,10 +40,10 @@ document.addEventListener('turbolinks:load', function() {
         let tr = document.createElement('tr');
         let table = document.getElementsByClassName('table')[0]
         table.appendChild(tr)
-        td1.innerText = obj.user_id;
+        td1.innerText = obj.project_name;
         td2.innerText = obj.description;
-        td3.innerText = 456789
-        td4.innerText = 'asdadafdsaf';
+        td3.innerText = obj.created_at + '/' + obj.end_time;
+        td4.innerText = obj.full_t
         tr.appendChild(td1)
         tr.appendChild(td2)
         tr.appendChild(td3)
