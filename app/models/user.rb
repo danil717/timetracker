@@ -12,4 +12,7 @@ class User < ApplicationRecord
   def havent_end_time_task?
     tasks.not_finished.first
   end
+
+#@todayTasks = Task.select('tasks.*, projects.name AS project_name').joins(:project).where('tasks.created_at >= ?', Date.today)
+
 end

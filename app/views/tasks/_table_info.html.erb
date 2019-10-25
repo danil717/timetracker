@@ -1,7 +1,11 @@
 <tr>
-  <td><%= 'task.project_name' %></td>
+  <td><%= task.project_name %></td>
   <td><%= task.description %></td>
-  <td><%= task.created_at %><strong>/</strong><%= task.end_time %></td>
+    <% if task.end_time == nil %>
+    <td><%= format_time_task(task.created_at) %><strong>/</strong></td>
+  <% else %>
+  <td><%= format_time_task(task.created_at) %><strong>/</strong><%= format_time_task(task.end_time) %></td>
+  <% end %>
   <% if task.end_time == nil %>
     <td></td>
   <% else %>

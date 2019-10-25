@@ -2,8 +2,12 @@
   <%= form.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
   <%= form.text_field :description, class: "form-control", id: "description"%>
   <%= form.submit "", id: "submit", hidden: true %>
-  <button type="button" class="btn btn-success" id="start">Start</button>
-  
-  <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
-  <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
+    <% if current_user.havent_end_time_task? %>
+      <button type="button" id="pause" class="hidden_btn btn btn-warning" >Pause</button>
+      <button type="button" id="stop" class="hidden_btn btn btn-danger" >Stop</button>
+    <% else %>
+      <button type="button" class="btn btn-success" id="start">Start</button>  
+      <button type="button" id="pause" class="hidden_btn btn btn-warning" hidden>Pause</button>
+      <button type="button" id="stop" class="hidden_btn btn btn-danger" hidden>Stop</button>
+    <% end %>
 <% end %>
