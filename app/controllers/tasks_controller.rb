@@ -25,6 +25,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+  
   end
 
   # GET /tasks/new
@@ -120,11 +121,13 @@ class TasksController < ApplicationController
 
     def task_end_time
       params.require(:task).permit(:end_time)
+
     end
 
     def check_user
       redirect_to new_user_session_path unless current_user
     end
+   
 
     def check_user_in_this_task?
       @task.user_id == current_user.id

@@ -13,7 +13,9 @@ module TasksHelper
       format("%02d:%02d:%02d", hours, minutes, seconds) 
    end
 
-  
+  def format_time_task(time_date)
+    time_date.strftime("%H:%M:%S")  
+   end
 
 
 end

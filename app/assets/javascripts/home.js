@@ -42,7 +42,7 @@ document.addEventListener('turbolinks:load', function() {
         table.appendChild(tr)
         td1.innerText = obj.user_id;
         td2.innerText = obj.description;
-        td3.innerText = 456789
+        td3.innerText = obj.created_at;
         td4.innerText = 'asdadafdsaf';
         tr.appendChild(td1)
         tr.appendChild(td2)
