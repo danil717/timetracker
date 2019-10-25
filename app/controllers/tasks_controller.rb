@@ -25,6 +25,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+  
   end
 
   # GET /tasks/new
@@ -50,7 +51,7 @@ class TasksController < ApplicationController
       respond_to do |format|
         if @task.save
           format.html { redirect_to @task, notice: 'Task was successfully created.' }
-          format.js { render :created}
+          format.js { render :created }
         else
           format.html { render :new }
           format.js { render :created_error }
@@ -67,7 +68,9 @@ class TasksController < ApplicationController
     # Task.find(params[:id]).update(end_time: DateTime.now)
     respond_to do |format|
       if check_user_in_this_task? && !@task.end_time && @task.update(end_time: DateTime.now)
-        format.json { render json: @task.to_json()}
+        #@task['full_time'] = @task.full_t
+        # @task.to_has['full_time'] = @task.full_t
+        format.json { render json: @task.to_json(methods: :full_t) }
       else
         format.js { render :created_error }
       end
@@ -101,7 +104,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = Task.select('tasks.*, projects.name AS project_name').joins(:project).find(params[:id])
     end
 
     def end_task
@@ -120,11 +123,13 @@ class TasksController < ApplicationController
 
     def task_end_time
       params.require(:task).permit(:end_time)
+
     end
 
     def check_user
       redirect_to new_user_session_path unless current_user
     end
+   
 
     def check_user_in_this_task?
       @task.user_id == current_user.id

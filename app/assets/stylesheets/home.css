@@ -428,6 +428,7 @@ main .table {
   border-left: 1px dashed rgb(59, 184, 247);
   padding: 10px 20px;
   color: #669;
+  word-break: break-all;
 }
 
 .table tr:hover td {
