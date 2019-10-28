@@ -30,3 +30,5 @@
 <br>
 
 <%= link_to 'New Task', new_task_path, class: "new_task" %>
+<br>
+<%= will_paginate(@tasks) %>

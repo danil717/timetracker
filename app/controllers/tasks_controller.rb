@@ -4,28 +4,31 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :completion, :check_user_in_this_task?]
   #before_action :check_user_in_this_task, :only [:completion]
   skip_before_action :verify_authenticity_token
+  require 'will_paginate/array'
 
   # GET /tasks
   # GET /tasks.json
   def index
-   # @tasks = Task.all
+   @tasks = []
      # @tasks = current_user.tasks
     if current_user
       if current_user.admin?
-        @tasks = Task.all
+        @tasks_index = Task.all    
       else
-        @tasks = current_user.tasks
+        @tasks_index = current_user.tasks
       end
+      @tasks_index.each do |t|
+        @tasks.push(t)
+      end
+      @tasks = @tasks.paginate(page: params[:page], per_page: 2)
     else
       redirect_to new_user_session_path
     end
-
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-  
   end
 
   # GET /tasks/new

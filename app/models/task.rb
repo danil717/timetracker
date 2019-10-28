@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
 
+	self.per_page = 2
+
 	belongs_to :project
 	belongs_to :user
 
@@ -16,6 +18,7 @@ class Task < ApplicationRecord
   scope :proj_name, -> {
   	select('tasks.*, projects.name AS project_name').joins(:project)
   }
+
 
 	def full_t
      full_time = end_time.to_i - created_at.to_i
