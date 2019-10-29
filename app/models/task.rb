@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
 
-	self.per_page = 2
+	self.per_page = 10
 
 	belongs_to :project
 	belongs_to :user

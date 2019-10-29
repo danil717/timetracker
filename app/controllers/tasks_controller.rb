@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       @tasks_index.each do |t|
         @tasks.push(t)
       end
-      @tasks = @tasks.paginate(page: params[:page], per_page: 2)
+      @tasks = @tasks.paginate(page: params[:page], per_page: 10)
     else
       redirect_to new_user_session_path
     end
