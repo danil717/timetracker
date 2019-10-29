@@ -19,6 +19,10 @@ class Task < ApplicationRecord
   	select('tasks.*, projects.name AS project_name').joins(:project)
   }
 
+  def self.search_by(search_term)
+    proj_name.where("LOWER(projects.name) LIKE :search_term", search_term: "#{search_term.downcase}%")    
+  end
+
 
 	def full_t
      full_time = end_time.to_i - created_at.to_i

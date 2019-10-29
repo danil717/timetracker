@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-
-
+<h3><strong>Enter name of project:</strong></h3> 
+    <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
+    <%= text_field_tag :search, @search_term, placeholder: "Search..." %>
+    <%= date_field("user", "born_on")%>
+     <%= f.submit "Submit" %>
+    <% end %>
+    <br>
 <table class='tasks_table'>
     <tr>
      <th class='task__title' colspan="6">
@@ -17,7 +21,7 @@
 
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.project_id %></td>
+        <td><%= task.project_name %></td>
         <td><%= task.user_id %></td>
         <td><%= task.end_time %></td>
         <td><%= task.description %></td>
