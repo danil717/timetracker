@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.tasks_table {
-  position: relative;
-  top: 20px;
+.task_page .tasks_table {
+  display: inline-block;
+
   margin-top: 20px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   text-align: center;
@@ -13,7 +13,7 @@
   background: #f0f0f0;
   border-radius: 20px;
   font-size: 20px;
-  margin: 0 auto;
+  margin-left: 40px;
 }
 
 .task__title {
@@ -42,4 +42,19 @@ a.new_task {
   display: inline-block;
   margin-right: 30%;
   float: right;
+}
+
+.task_page {
+  width: 100vw;
+  height: 1000px;
+  display: flex;
+
+}
+
+.task_page .task_sidebar {
+  display: inline-block;
+  margin-top: 66px;
+  width: 15%;
+  height: 45%;
+  background-color: #7171ff;
 }

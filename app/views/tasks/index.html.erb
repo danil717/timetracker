@@ -1,32 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+<div class="task_page">
+  <aside class="task_sidebar">
 
-
-<table class='tasks_table'>
-    <tr>
-     <th class='task__title' colspan="6">
-       <h1>Today</h1>
-     </th>
-   </tr>
-   <tr>
-      <th>Project</th>
-      <th>User</th>
-      <th>End time</th>
-      <th>Description</th>
-    </tr>
-
-    <% @tasks.each do |task| %>
+  </aside>
+  <table class='tasks_table'>
       <tr>
-        <td><%= task.project_id %></td>
-        <td><%= task.user_id %></td>
-        <td><%= task.end_time %></td>
-        <td><%= task.description %></td>
-        <td colspan="2"><%= link_to 'Show', task %> <%= link_to 'Edit', edit_task_path(task) %> <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <th class='task__title' colspan="6">
+         <h1>Tasks</h1>
+       </th>
+     </tr>
+     <tr>
+        <th>Project</th>
+        <th>User</th>
+        <th>End time</th>
+        <th>Description</th>
       </tr>
-    <% end %>
 
-</table>
-
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.project_id %></td>
+          <td><%= task.user_id %></td>
+          <td><%= task.end_time %></td>
+          <td><%= task.description %></td>
+          <td colspan="2"><%= link_to 'Show', task %> <%= link_to 'Edit', edit_task_path(task) %> <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+  </table>
+</div>
 <br>
 
 <%= link_to 'New Task', new_task_path, class: "new_task" %>
