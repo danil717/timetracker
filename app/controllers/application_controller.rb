@@ -3,7 +3,10 @@ class ApplicationController < ActionController::Base
     #debugger
     redirect_to new_user_session_path unless current_user
 
-    @task = Task.new
+    task_not_finished = Task.not_finished.first
+
+    @task = task_not_finished || Task.new
+
     @today_tasks = Task.today_t.proj_name.where('user_id = ?', current_user )
 
     #@task_not_finish = current_user.tasks.not_finished.first

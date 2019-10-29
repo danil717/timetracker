@@ -13,7 +13,7 @@ class TasksController < ApplicationController
      # @tasks = current_user.tasks
     if current_user
       if current_user.admin?
-        @tasks_index = Task.all    
+        @tasks_index = Task.all
       else
         @tasks_index = current_user.tasks
       end
@@ -71,9 +71,7 @@ class TasksController < ApplicationController
     # Task.find(params[:id]).update(end_time: DateTime.now)
     respond_to do |format|
       if check_user_in_this_task? && !@task.end_time && @task.update(end_time: DateTime.now)
-        #@task['full_time'] = @task.full_t
-        # @task.to_has['full_time'] = @task.full_t
-        format.json { render json: @task.to_json(methods: :full_t) }
+        format.json { render json: @task.to_json(methods: [:full_time, :end_time_strf, :created_at_strf]) }
       else
         format.js { render :created_error }
       end
@@ -132,7 +130,7 @@ class TasksController < ApplicationController
     def check_user
       redirect_to new_user_session_path unless current_user
     end
-   
+
 
     def check_user_in_this_task?
       @task.user_id == current_user.id

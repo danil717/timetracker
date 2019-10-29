@@ -78,8 +78,8 @@ document.addEventListener('turbolinks:load', function() {
     table.appendChild(tr)
     td1.innerText = obj.project_name;
     td2.innerText = obj.description;
-    td3.innerText = obj.created_at + '/' + obj.end_time;
-    td4.innerText = obj.full_t
+    td3.innerText = obj.created_at_strf + '/' + obj.end_time_strf;
+    td4.innerText = obj.full_time;
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);

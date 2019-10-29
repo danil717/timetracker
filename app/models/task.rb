@@ -19,8 +19,7 @@ class Task < ApplicationRecord
   	select('tasks.*, projects.name AS project_name').joins(:project)
   }
 
-
-	def full_t
+	def full_time
      full_time = end_time.to_i - created_at.to_i
 
      seconds = full_time % 60
@@ -30,5 +29,11 @@ class Task < ApplicationRecord
      format("%02d:%02d:%02d", hours, minutes, seconds)
 	end
 
+	def created_at_strf
+		created_at.strftime("%H:%M:%S")
+	end
 
+	def end_time_strf
+		end_time.strftime("%H:%M:%S")
+	end
 end
