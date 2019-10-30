@@ -82,6 +82,7 @@ main button {
 
 .btn {
   font-weight: 400;
+  text-decoration: none;
   color: #212529;
   text-align: center;
   -webkit-user-select: none;

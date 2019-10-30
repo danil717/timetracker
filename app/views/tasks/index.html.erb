@@ -6,7 +6,7 @@
   </aside>
   <table class='tasks_table'>
       <tr>
-       <th class='task__title' colspan="6">
+       <th class='task__title' colspan="5">
          <h1>Tasks</h1>
        </th>
      </tr>
@@ -23,13 +23,19 @@
           <td><%= task.user_id %></td>
           <td><%= task.end_time %></td>
           <td><%= task.description %></td>
-          <td colspan="2"><%= link_to 'Show', task %> <%= link_to 'Edit', edit_task_path(task) %> <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td colspan="2">
+            <%= link_to 'Show', task, class: "btn btn-success" %>
+            <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
+            <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
         </tr>
       <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="pagination"><%= will_paginate(@tasks) %></td>
+        <td><%= link_to 'New Task', new_task_path, class: "new_task btn btn-warning" %></td>
+      </tr>
   </table>
 </div>
-<br>
-
-<%= link_to 'New Task', new_task_path, class: "new_task" %>
-<br>
-<%= will_paginate(@tasks) %>
