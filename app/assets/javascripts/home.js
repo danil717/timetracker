@@ -1,23 +1,54 @@
 document.addEventListener('turbolinks:load', function() {
-  let form = null;
+  if(window.location.href === "http://localhost:3000/") {
+    let form = null;
 
-  document.addEventListener("start", function(event) {
-    let hiddens = form.getElementsByClassName('hidden_btn');
-    let addTask = document.getElementById('add__task');
+    document.addEventListener("start", function(event) {
+      let hiddens = form.getElementsByClassName('hidden_btn');
+      let addTask = document.getElementById('add__task');
+      let pause = form.getElementsByClassName('btn-warning')[0];
+      let stop = form.getElementsByClassName('btn-danger')[0];
+      let start = form.getElementsByClassName('btn-success')[0];
+      let btn = form.getElementsByClassName('btn');
+      let description = form.getElementsByClassName('form-control')[0];
 
-    addTask.disabled = false;
-    for(let i of hiddens) {
-      i.disabled = false
-      i.hidden = false;
-      i.setAttribute("task__id", event.detail.taskId);
+      for(let i of btn) {
+        i.disabled = true;
+      };
+      disabled(btn, true)
+      description.disabled = true;
+      addTask.disabled = false;
+
+      for(let i of hiddens) {
+        i.disabled = false;
+        i.hidden = false;
+        i.setAttribute("task__id", event.detail.taskId);
+      }
+      form.start.hidden = true;
+
+    });
+
+
+    inputs.onclick = function(e) {
+      if(e.target.id == 'start') {
+        formDefined(e.target.form);
+      } else if(e.target.id == 'pause') {
+        stopPause(true, e.target.form);
+      }else if(e.target.id == 'stop') {
+        stopPause(false, e.target.form);
+        console.log(e.target.form)
+      }
     }
-    form.start.hidden = true;
 
-    let pause = form.getElementsByClassName('btn-warning')[0];
-    let stop = form.getElementsByClassName('btn-danger')[0];
-    let start = form.getElementsByClassName('btn-success')[0]
+    function formDefined(specificForm) {
+      form = specificForm;
+      form.submit.click();
+    }
 
-    function stopPause() {
+    function stopPause(isPause, form) {
+      let pause = form.getElementsByClassName('btn-warning')[0];
+      let stop = form.getElementsByClassName('btn-danger')[0];
+      let start = form.getElementsByClassName('btn-success')[0];
+
       let taskId = pause.getAttribute('task__id');
 
       const response = fetch(`/tasks/${taskId}/completion`, {
@@ -29,51 +60,40 @@ document.addEventListener('turbolinks:load', function() {
       .then(response => response.text())
       .then(data => {
         addTaskToTable(data);
+        if(isPause) {
+          let starts = document.getElementsByClassName('btn-success')
+          disabled(starts, false)
+          start.hidden = false;
+          pause.hidden = true;
+        } else {
+          form.remove();
+        };
       })
       .catch(function (error) {
         console.log('Request failed', error);
       });
     };
 
-    pause.addEventListener('click', stopPause); //() => stopPause(pause.getAttribute('task__id'))
-    stop.addEventListener('click', stopPause);
-
-    pause.onclick = function() {
-      start.hidden = false
-      start.disabled = false
-      this.hidden = true
-    }
-
-    stop.onclick = function () {
-      form.remove();
-    }
-  });
-
-  if(window.location.href === "http://localhost:3000/") {
-    inputs.onclick = function(e) {
-      if(e.target.id == 'start') {
-        form = e.target.form;
-
-        form.submit.click();
-        let btn = document.getElementsByClassName('btn');
-        let description = document.getElementById('description');
-        for(let i of btn) {
+    function disabled(item, dis) {
+      if (dis === true) {
+        for(let i of item) {
           i.disabled = true;
-        };
-        description.disabled = true;
-      };
-    };
-  };
+        }
+      } else {
+        for(let i of item) {
+          i.disabled = false;
+        }
+      }
+    }
 
-  function addTaskToTable(data) {
-    console.log(data);
-    let obj = JSON.parse(data)
-    let td1 = document.createElement('td');
-    let td2 = document.createElement('td');
-    let td3 = document.createElement('td');
-    let td4 = document.createElement('td');
-    let tr = document.createElement('tr');
-    let table = document.getElementsByClassName('table')[0];
+    function addTaskToTable(data) {
+      let obj = JSON.parse(data)
+      let td1 = document.createElement('td');
+      let td2 = document.createElement('td');
+      let td3 = document.createElement('td');
+      let td4 = document.createElement('td');
+      let tr = document.createElement('tr');
+      let table = document.getElementsByClassName('table')[0];
 
     table.appendChild(tr)
     td1.innerText = obj.project_name;

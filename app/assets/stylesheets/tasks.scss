@@ -2,18 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.task_page .tasks_table {
-  display: inline-block;
+.task_page {
+  width: 100vw;
+  display: flex;
+}
 
+.task_page .tasks_table {
+  color: green;
   margin-top: 20px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  text-align: center;
   border-collapse: collapse;
   border-spacing: 5px;
   background: #f0f0f0;
   border-radius: 20px;
   font-size: 20px;
-  margin-left: 40px;
 }
 
 .task__title {
@@ -31,30 +33,24 @@
 }
 
 .tasks_table td {
-  padding: 20px 70px;
-  font-size: 15px;
+  padding: 25px 70px;
+  font-size: 18px;
 }
 
 a.new_task {
-  position: relative;
-  top: 20px;
   font-size: 20px;
-  display: inline-block;
-  margin-right: 30%;
-  float: right;
+  width: 20px;
 }
 
-.task_page {
-  width: 100vw;
-  height: 1000px;
-  display: flex;
 
-}
 
 .task_page .task_sidebar {
   display: inline-block;
   margin-top: 66px;
   width: 15%;
-  height: 45%;
   background-color: #7171ff;
+}
+
+.pagination {
+  font-size: 25px;
 }
