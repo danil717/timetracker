@@ -10,10 +10,8 @@ document.addEventListener('turbolinks:load', function() {
       let start = form.getElementsByClassName('btn-success')[0];
       let btn = form.getElementsByClassName('btn');
       let description = form.getElementsByClassName('form-control')[0];
+      window.form = form
 
-      for(let i of btn) {
-        i.disabled = true;
-      };
       disabled(btn, true)
       description.disabled = true;
       addTask.disabled = false;
@@ -21,10 +19,10 @@ document.addEventListener('turbolinks:load', function() {
       for(let i of hiddens) {
         i.disabled = false;
         i.hidden = false;
-        i.setAttribute("task__id", event.detail.taskId);
+        i.setAttribute('task__id', event.detail.taskId);
       }
       form.start.hidden = true;
-
+      form.submit.setAttribute('class', 'stop-pause')
     });
 
 
@@ -34,8 +32,12 @@ document.addEventListener('turbolinks:load', function() {
       } else if(e.target.id == 'pause') {
         stopPause(true, e.target.form);
       }else if(e.target.id == 'stop') {
-        stopPause(false, e.target.form);
-        console.log(e.target.form)
+
+        if(e.target.form.submit.getAttribute('class') === 'start-pause') {
+          e.target.form.remove()
+        } else {
+          stopPause(false, e.target.form);
+        }
       }
     }
 
@@ -46,9 +48,7 @@ document.addEventListener('turbolinks:load', function() {
 
     function stopPause(isPause, form) {
       let pause = form.getElementsByClassName('btn-warning')[0];
-      let stop = form.getElementsByClassName('btn-danger')[0];
       let start = form.getElementsByClassName('btn-success')[0];
-
       let taskId = pause.getAttribute('task__id');
 
       const response = fetch(`/tasks/${taskId}/completion`, {
@@ -65,6 +65,7 @@ document.addEventListener('turbolinks:load', function() {
           disabled(starts, false)
           start.hidden = false;
           pause.hidden = true;
+          form.submit.setAttribute('class', 'start-pause')
         } else {
           form.remove();
         };
@@ -104,5 +105,6 @@ document.addEventListener('turbolinks:load', function() {
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    }
   }
 });
