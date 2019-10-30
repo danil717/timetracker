@@ -4,9 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :tasks
+  has_one :сustomer
 
   def admin?
     role == 'admin'
+  end
+
+  def customer?
+    Customer.find(user)
   end
 
   def havent_end_time_task?
