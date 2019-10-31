@@ -13,9 +13,9 @@ class TasksController < ApplicationController
      # @tasks = current_user.tasks
     if current_user
       if current_user.admin?
-        @tasks_index = Task.all
+        @tasks_index = Task.proj_name.search_by(params)
       else
-        @tasks_index = current_user.tasks
+        @tasks_index = current_user.proj_name.search_by(params)
       end
       @tasks_index.each do |t|
         @tasks.push(t)

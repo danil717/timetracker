@@ -1,21 +1,37 @@
 <p id="notice"><%= notice %></p>
+<h3><strong>Enter name of project:</strong></h3>
+    <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
+   <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+    Create between:
+    <%= date_field_tag(:search_date_1, min: 1.year.ago.strftime('%Y-%m-%d') )%>
+    <%= date_field_tag(:search_date_2, min: 1.year.ago.strftime('%Y-%m-%d') )%>
+    Long to short:
+    <%= check_box_tag(:long_short, true, false, options = {}) %>
+    Short to long:
+    <%= check_box_tag(:short_long,  options = {}) %>
+    <%= f.submit "Submit" %>
+    <% end %>
+    <br>
+<table class='tasks_table'>
+    <tr>
+     <th class='task__title' colspan="6">
+       <h1>Today</h1>
+     </th>
+   </tr>
+   <tr>
+      <th>Project</th>
+      <th>User</th>
+      <th>End time</th>
+      <th>Description</th>
+    </tr>
 
-<div class="task_page">
-  <aside class="task_sidebar">
-
-  </aside>
-  <table class='tasks_table table'>
+    <% @tasks.each do |task| %>
       <tr>
-       <th id='task__title' colspan="5">
-         Tasks
-       </th>
-     </tr>
-     <tr>
-        <th>Project</th>
-        <th>User</th>
-        <th>End time</th>
-        <th colspan="2">Description</th>
-        <th colspan="2"></th>
+        <td><%= task.project_name %></td>
+        <td><%= task.user_id %></td>
+        <td><%= task.end_time %></td>
+        <td><%= task.description %></td>
+        <td colspan="2"><%= link_to 'Show', task %> <%= link_to 'Edit', edit_task_path(task) %> <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
 
       <% @tasks.each do |task| %>
