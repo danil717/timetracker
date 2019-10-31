@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%# <p id="notice"><%= notice %></p %>
 
 <div class="task_page">
-  <aside class="task_sidebar">
 
-  </aside>
   <table class='tasks_table table'>
       <tr>
-       <th id='task__title' colspan="5">
+       <th id='task__title' colspan="6">
          Tasks
        </th>
      </tr>
@@ -35,8 +33,13 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="pagination" colspan="2"><%= will_paginate(@tasks) %></td>
-        <td colspan="2"><%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %></td>
+        <td class="pagination" colspan="2"></td>
+        <td colspan="2"></td>
       </tr>
   </table>
+</div>
+<div class="bottom">
+  <%= will_paginate(@tasks) %>
+  <%# <%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %>
+
 </div>

@@ -7,7 +7,7 @@ document.addEventListener("turbolinks:load", function() {
 
   if(link[3] === '') {
     home.style.color = 'rgb(250, 250, 89)';
-  } else if(link[3] === 'tasks') {
+  } else if(window.location.href.match('tasks') !== null) {
     tasks.style.color = 'rgb(250, 250, 89)';
   }else if(link[4] === 'sign_up') {
     register.style.color = 'rgb(250, 250, 89)';
