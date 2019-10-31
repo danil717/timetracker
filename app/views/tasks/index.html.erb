@@ -4,17 +4,18 @@
   <aside class="task_sidebar">
 
   </aside>
-  <table class='tasks_table'>
+  <table class='tasks_table table'>
       <tr>
-       <th class='task__title' colspan="5">
-         <h1>Tasks</h1>
+       <th id='task__title' colspan="5">
+         Tasks
        </th>
      </tr>
      <tr>
         <th>Project</th>
         <th>User</th>
         <th>End time</th>
-        <th>Description</th>
+        <th colspan="2">Description</th>
+        <th colspan="2"></th>
       </tr>
 
       <% @tasks.each do |task| %>
@@ -22,7 +23,7 @@
           <td><%= task.project_id %></td>
           <td><%= task.user_id %></td>
           <td><%= task.end_time %></td>
-          <td><%= task.description %></td>
+          <td colspan="2"><%= task.description %></td>
           <td colspan="2">
             <%= link_to 'Show', task, class: "btn btn-success" %>
             <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
@@ -34,8 +35,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="pagination"><%= will_paginate(@tasks) %></td>
-        <td><%= link_to 'New Task', new_task_path, class: "new_task btn btn-warning" %></td>
+        <td class="pagination" colspan="2"><%= will_paginate(@tasks) %></td>
+        <td colspan="2"><%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %></td>
       </tr>
   </table>
 </div>

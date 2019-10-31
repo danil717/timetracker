@@ -16,11 +16,10 @@
         <th>Start/End time</th>
         <th>Full time</th>
       </tr>
-    
+
       <% @today_tasks.each do |task| %>
         <%= render 'tasks/table_info', task: task %>
       <% end %>
     </table>
   </div>
 </main>
-

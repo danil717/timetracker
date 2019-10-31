@@ -8,11 +8,13 @@ document.addEventListener('turbolinks:load', function() {
       let pause = form.getElementsByClassName('btn-warning')[0];
       let stop = form.getElementsByClassName('btn-danger')[0];
       let start = form.getElementsByClassName('btn-success')[0];
+      let starts = document.getElementsByClassName('btn-success');
       let btn = form.getElementsByClassName('btn');
       let description = form.getElementsByClassName('form-control')[0];
       window.form = form
 
       disabled(btn, true)
+      disabled(starts, true)
       description.disabled = true;
       addTask.disabled = false;
 

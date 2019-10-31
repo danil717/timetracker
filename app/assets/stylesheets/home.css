@@ -397,7 +397,7 @@ main button {
   opacity: 1;
 }
 
-main .table {
+.table {
   top: 20px;
   position: relative;
   font-size: 20px;
@@ -424,6 +424,7 @@ main .table {
 }
 
 .table td {
+  font-size: 16px;
   border-collapse: collapse;
   border-right: 1px dashed rgb(59, 184, 247);
   border-left: 1px dashed rgb(59, 184, 247);
