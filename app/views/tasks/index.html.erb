@@ -22,11 +22,13 @@
         <tr>
           <td><%= task.project_id %></td>
           <td><%= task.user_id %></td>
-          <td><%= task.end_time %></td>
+          <td nowrap><%= task.end_time %></td>
           <td colspan="2"><%= task.description %></td>
           <td colspan="2">
-            <%= link_to 'Show', task, class: "btn btn-success" %>
-            <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
+            <% if current_user.admin? %>
+              <%= link_to 'Show', task, class: "btn btn-success" %>
+              <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
+            <% end %>
             <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>
         </tr>
@@ -36,7 +38,9 @@
         <td></td>
         <td></td>
         <td class="pagination" colspan="2"><%= will_paginate(@tasks) %></td>
-        <td colspan="2"><%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %></td>
+        <% if current_user.admin? %>
+          <td colspan="2"><%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %></td>
+        <% end %>
       </tr>
   </table>
 </div>

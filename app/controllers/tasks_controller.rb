@@ -114,7 +114,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-
       if current_user.admin?
         params.require(:task).permit(:project_id, :user_id, :description)
       else
@@ -124,13 +123,11 @@ class TasksController < ApplicationController
 
     def task_end_time
       params.require(:task).permit(:end_time)
-
     end
 
     def check_user
       redirect_to new_user_session_path unless current_user
     end
-
 
     def check_user_in_this_task?
       @task.user_id == current_user.id
