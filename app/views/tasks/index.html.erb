@@ -12,31 +12,24 @@
     <%= f.submit "Submit" %>
     <% end %>
     <br>
-<table class='tasks_table'>
-    <tr>
-     <th class='task__title' colspan="6">
-       <h1>Today</h1>
-     </th>
-   </tr>
-   <tr>
-      <th>Project</th>
-      <th>User</th>
-      <th>End time</th>
-      <th>Description</th>
-    </tr>
-
-    <% @tasks.each do |task| %>
+<div class="task_page">
+  <table class='tasks_table table'>
       <tr>
-        <td><%= task.project_name %></td>
-        <td><%= task.user_id %></td>
-        <td><%= task.end_time %></td>
-        <td><%= task.description %></td>
-        <td colspan="2"><%= link_to 'Show', task %> <%= link_to 'Edit', edit_task_path(task) %> <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <th id='task__title' colspan="5">
+         Tasks
+       </th>
+     </tr>
+     <tr>
+        <th>Project</th>
+        <th>User</th>
+        <th>End time</th>
+        <th colspan="2">Description</th>
+        <th colspan="2"></th>
       </tr>
 
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.project_id %></td>
+          <td><%= task.project_name %></td>
           <td><%= task.user_id %></td>
           <td nowrap><%= task.end_time %></td>
           <td colspan="2"><%= task.description %></td>
