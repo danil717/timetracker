@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 <h3><strong>Enter name of project:</strong></h3>
     <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
    <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
@@ -15,7 +15,7 @@
 <div class="task_page">
   <table class='tasks_table table'>
       <tr>
-       <th id='task__title' colspan="5">
+       <th id='task__title' colspan="6">
          Tasks
        </th>
      </tr>
@@ -31,7 +31,7 @@
         <tr>
           <td><%= task.project_name %></td>
           <td><%= task.user_id %></td>
-          <td nowrap><%= task.end_time %></td>
+          <td><%= task.end_time %></td>
           <td colspan="2"><%= task.description %></td>
           <td colspan="2">
             <% if current_user.admin? %>
@@ -46,10 +46,13 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="pagination" colspan="2"><%= will_paginate(@tasks) %></td>
-        <% if current_user.admin? %>
-          <td colspan="2"><%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %></td>
-        <% end %>
+        <td class="pagination" colspan="2"></td>
+        <td colspan="2"></td>
       </tr>
   </table>
+</div>
+<div class="bottom">
+  <%= will_paginate(@tasks) %>
+  <%# <%= link_to 'New Task', new_task_path, class: "new_task_task_page btn btn-warning" %>
+
 </div>

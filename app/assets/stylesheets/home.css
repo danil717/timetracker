@@ -437,3 +437,7 @@ main button {
   background: #ccddff;
   transition: .3s linear;
 }
+
+.footer {
+  height: 65px;
+}

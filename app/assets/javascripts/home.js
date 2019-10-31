@@ -29,7 +29,8 @@ document.addEventListener('turbolinks:load', function() {
       } else if(e.target.id == 'pause') {
         stopPause(true, e.target.form);
       }else if(e.target.id == 'stop') {
-
+        let starts = document.getElementsByClassName('btn-success');
+        disabled(starts, false)
         if(e.target.form.submit.getAttribute('class') === 'start-pause') {
           e.target.form.remove()
         } else {
