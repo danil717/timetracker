@@ -3,10 +3,10 @@ document.addEventListener('turbolinks:load', function() {
     let form = null;
     let stops = document.getElementsByClassName('btn-danger');
     let starts = document.getElementsByClassName('btn-success');
-    let pause = form.getElementsByClassName('btn-warning')[0];
-    let start = form.getElementsByClassName('btn-success')[0];
     document.addEventListener("start", function(event) {
       let hiddens = form.getElementsByClassName('hidden_btn');
+      let pause = form.getElementsByClassName('btn-warning')[0];
+      let start = form.getElementsByClassName('btn-success')[0];
       let stop = form.getElementsByClassName('btn-danger')[0];
       let description = form.getElementsByClassName('form-control')[0];
       let select = form.getElementsByClassName('dropdown-toggle')[0];
@@ -46,6 +46,8 @@ document.addEventListener('turbolinks:load', function() {
     }
 
     function stopPause(isPause, form) {
+      let pause = form.getElementsByClassName('btn-warning')[0];
+      let start = form.getElementsByClassName('btn-success')[0];
       let taskId = pause.getAttribute('task__id');
 
       const response = fetch(`/tasks/${taskId}/completion`, {
