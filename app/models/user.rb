@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def projects
-    Project.projects_for_customer.find(id)
+    Project.projects_for_customer.where('user_id = ?', id)
   end
 #@todayTasks = Task.select('tasks.*, projects.name AS project_name').joins(:project).where('tasks.created_at >= ?', Date.today)
 
