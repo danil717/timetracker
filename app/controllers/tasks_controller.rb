@@ -21,10 +21,10 @@ class TasksController < ApplicationController
       @date_1 = params[:search_date_1]
       @date_2 = params[:search_date_2]
 
-      if params[:long_short].present? 
+      if params[:long_short].present?
         @is_checked = true
-         @is_checked2 = false     
-      else 
+         @is_checked2 = false
+      else
       @is_checked = false
       end
 
@@ -51,14 +51,14 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.newdef task_params
+    @task = Task.new
 
       if current_user.admin?
         params.require(:task).permit(:project_id, :user_id, :description)
       else
         params.require(:task).permit(:project_id, :description)
       end
-    end
+
   end
 
   # GET /tasks/1/edit
