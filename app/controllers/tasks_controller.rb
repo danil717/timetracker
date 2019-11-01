@@ -17,6 +17,16 @@ class TasksController < ApplicationController
       else
         @tasks_index = current_user.proj_name.search_by(params)
       end
+
+      @date_1 = params[:search_date_1]
+      @date_2 = params[:search_date_2]
+      if params[:long_short].present?
+        @is_checked = true
+
+      else 
+      @is_checked = false
+      end
+
       @tasks_index.each do |t|
         @tasks.push(t)
       end

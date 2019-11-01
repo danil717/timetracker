@@ -27,7 +27,6 @@ class Task < ApplicationRecord
     search_by_date(params[:search_date_1], params[:search_date_2]).
     search_by_length_desc(params[:long_short]).
     search_by_length_asc(params[:short_long])
-
   }
 
   scope :search_by_project, -> (project_id){

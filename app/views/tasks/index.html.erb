@@ -1,16 +1,19 @@
 <!-- <p id="notice"><%= notice %></p> -->
-
 <div class="filter">
     <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
-      <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-      Create between:
-      <%= date_field_tag(:search_date_1)%>
-      <%= date_field_tag(:search_date_2)%>
-      Long to short:
-      <%= check_box_tag(:long_short, true, false, options = {}) %>
-      Short to long:
-      <%= check_box_tag(:short_long,  options = {}) %>
-      <%= f.submit "Submit", class: 'btn btn-success' %>
+   <%if  params[:project_id].present?%>
+   <%= f.select(:project_id, projects_for_select, {selected: params[:project_id]}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+   <% else %>
+   <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+   <% end %>
+    Create between:
+    <%= date_field_tag(:search_date_1, @date_1)%>
+    <%= date_field_tag(:search_date_2, @date_2)%>
+    Long to short:
+    <%= check_box_tag(:long_short, true, false, options = {}) %>
+    Short to long:
+    <%= check_box_tag(:short_long, true, false, options = {}) %>
+    <%= f.submit "Submit", class: 'btn btn-success' %>
     <% end %>
 </div>
 
