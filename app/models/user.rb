@@ -11,13 +11,16 @@ class User < ApplicationRecord
   end
 
   def customer?
-    Customer.find(user)
+    Customer.where('user_id = ?', id).present?
   end
 
   def havent_end_time_task?
     tasks.not_finished.first
   end
 
+  def projects
+    Project.projects_for_customer.find(id)
+  end
 #@todayTasks = Task.select('tasks.*, projects.name AS project_name').joins(:project).where('tasks.created_at >= ?', Date.today)
 
 end

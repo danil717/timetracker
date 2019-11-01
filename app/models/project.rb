@@ -6,4 +6,7 @@ class Project < ApplicationRecord
   belongs_to :customer
   has_many :tasks
 
+  scope :projects_for_customer, -> {
+  	select('projects.*').joins(:customer)
+  }
 end
