@@ -33,7 +33,14 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.newdef task_params
+
+      if current_user.admin?
+        params.require(:task).permit(:project_id, :user_id, :description)
+      else
+        params.require(:task).permit(:project_id, :description)
+      end
+    end
   end
 
   # GET /tasks/1/edit
@@ -130,7 +137,6 @@ class TasksController < ApplicationController
     def check_user
       redirect_to new_user_session_path unless current_user
     end
-
 
     def check_user_in_this_task?
       @task.user_id == current_user.id
