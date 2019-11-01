@@ -15,7 +15,7 @@ class TasksController < ApplicationController
       if current_user.admin?
         @tasks_index = Task.proj_name.search_by(params)
       else
-        @tasks_index = current_user.proj_name.search_by(params)
+        @tasks_index = Task.where(user_id: current_user).proj_name.search_by(params)
       end
 
       @date_1 = params[:search_date_1]
