@@ -51,7 +51,14 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.newdef task_params
+
+      if current_user.admin?
+        params.require(:task).permit(:project_id, :user_id, :description)
+      else
+        params.require(:task).permit(:project_id, :description)
+      end
+    end
   end
 
   # GET /tasks/1/edit

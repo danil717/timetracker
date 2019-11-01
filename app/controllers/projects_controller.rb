@@ -5,7 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   # GET /projects/1
@@ -15,7 +19,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new    
+    @project = Project.new
   end
 
   # GET /projects/1/edit
@@ -72,13 +76,13 @@ class ProjectsController < ApplicationController
     def project_params
 
       params.require(:project).permit(:customer_id, :name, :description)
-      
+
 
     end
 
     def check_user_admin
       if current_user
-        redirect_to root_path unless current_user.admin?
+        redirect_to root_path unless current_user.admin? || current_user.customer?
       else
         redirect_to new_user_session_path
       end
