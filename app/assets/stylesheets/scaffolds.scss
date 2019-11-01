@@ -1,16 +1,16 @@
 body {
   background-color: rgb(231, 241, 255);
   color: #333;
-  
+
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  
+
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  
+
 }
 
 pre {
@@ -81,4 +81,74 @@ div {
 
 label {
   display: block;
+}
+
+.login {
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.login .form-control {
+  border-radius: 4px;
+  width: 200px;
+}
+
+form.simple_form.new_user {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.form-actions {
+    margin-top: 10px;
+}
+
+.form-actions a {
+  font-size: 16px;
+  margin-left: 50px;
+}
+
+.sign_up_page {
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.sign_up_page .form-control {
+  border-radius: 4px;
+  width: 200px;
+}
+
+.input{
+  margin-top: 10px;
+}
+
+.input .hint {
+  position: relative;
+  left: 10px;
+}
+
+input.string {
+  margin-left: -5px;
+  height: 33.6px;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: none;
+  position: relative;
+}
+
+input.string:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    height: 33.6px;
 }
