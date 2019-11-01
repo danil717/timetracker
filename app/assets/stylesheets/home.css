@@ -68,7 +68,7 @@ main button {
   margin-left: 10px;
 }
 
-#select {
+main .container #select {
   position: relative;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

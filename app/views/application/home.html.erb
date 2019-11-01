@@ -2,7 +2,6 @@
   <div class="container">
     <div id='inputs'>
       <%= link_to '+Add task', new_task_path, class: 'btn btn-primary', id: 'add__task', remote: true%>
-      <!-- <input class='btn btn-primary' id='add__task' type="button" value="+Add task"> -->
       <%= render 'tasks/form'%>
       <ins id="error" hidden>Error! Task haven't started!</ins>
     </div>

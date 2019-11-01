@@ -2,15 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.task_page {
-  width: 100vw;
+.filter {
+  font-size: 13px;
+  text-align: center;
+  position: relative;
+  width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
   margin-top: 20px;
 }
+
+.filter input[type='checkbox'] {
+  position: relative;
+  top: 2.5px;
+ }
+
+ .filter .btn-success {
+   font-size: 15.5px;
+   line-height: 1rem;
+ }
+
+ .filter .dropdown-toggle {
+   border-radius: 1px solid black;
+ }
 
 .task_page .tasks_table {
   text-align: center;
   top: 0;
   width: 85%;
+  margin-top: 20px;
 }
 
 .new_task_task_page {
@@ -31,5 +51,4 @@
 .pagination {
   font-size: 20px;
   margin: 0 auto;
-
 }

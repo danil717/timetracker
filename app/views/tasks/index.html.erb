@@ -1,17 +1,19 @@
 <!-- <p id="notice"><%= notice %></p> -->
-<h3><strong>Enter name of project:</strong></h3>
+
+<div class="filter">
     <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
-   <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
-    Create between:
-    <%= date_field_tag(:search_date_1, min: 1.year.ago.strftime('%Y-%m-%d') )%>
-    <%= date_field_tag(:search_date_2, min: 1.year.ago.strftime('%Y-%m-%d') )%>
-    Long to short:
-    <%= check_box_tag(:long_short, true, false, options = {}) %>
-    Short to long:
-    <%= check_box_tag(:short_long,  options = {}) %>
-    <%= f.submit "Submit" %>
+      <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+      Create between:
+      <%= date_field_tag(:search_date_1)%>
+      <%= date_field_tag(:search_date_2)%>
+      Long to short:
+      <%= check_box_tag(:long_short, true, false, options = {}) %>
+      Short to long:
+      <%= check_box_tag(:short_long,  options = {}) %>
+      <%= f.submit "Submit", class: 'btn btn-success' %>
     <% end %>
-    <br>
+</div>
+
 <div class="task_page">
   <table class='tasks_table table'>
       <tr>

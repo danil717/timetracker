@@ -1,16 +1,17 @@
 document.addEventListener('turbolinks:load', function() {
   if(window.location.href === "http://localhost:3000/") {
     let form = null;
-
+    let stops = document.getElementsByClassName('btn-danger');
+    let starts = document.getElementsByClassName('btn-success');
+    let pause = form.getElementsByClassName('btn-warning')[0];
+    let start = form.getElementsByClassName('btn-success')[0];
     document.addEventListener("start", function(event) {
       let hiddens = form.getElementsByClassName('hidden_btn');
-      let pause = form.getElementsByClassName('btn-warning')[0];
       let stop = form.getElementsByClassName('btn-danger')[0];
-      let start = form.getElementsByClassName('btn-success')[0];
-      let starts = document.getElementsByClassName('btn-success');
       let description = form.getElementsByClassName('form-control')[0];
       let select = form.getElementsByClassName('dropdown-toggle')[0];
-
+      disabled(stops, true)
+      stop.disabled = false
       disabled(starts, true)
       description.style.pointerEvents = 'none'
       select.style.pointerEvents = 'none'
@@ -29,8 +30,8 @@ document.addEventListener('turbolinks:load', function() {
       } else if(e.target.id == 'pause') {
         stopPause(true, e.target.form);
       }else if(e.target.id == 'stop') {
-        let starts = document.getElementsByClassName('btn-success');
         disabled(starts, false)
+        disabled(stops, false);
         if(e.target.form.submit.getAttribute('class') === 'start-pause') {
           e.target.form.remove()
         } else {
@@ -45,8 +46,6 @@ document.addEventListener('turbolinks:load', function() {
     }
 
     function stopPause(isPause, form) {
-      let pause = form.getElementsByClassName('btn-warning')[0];
-      let start = form.getElementsByClassName('btn-success')[0];
       let taskId = pause.getAttribute('task__id');
 
       const response = fetch(`/tasks/${taskId}/completion`, {
@@ -60,7 +59,9 @@ document.addEventListener('turbolinks:load', function() {
         addTaskToTable(data);
         if(isPause) {
           let starts = document.getElementsByClassName('btn-success')
-          disabled(starts, false)
+          let stop = document.getElementsByClassName('btn-danger')
+          disabled(starts, false);
+          disabled(stop, false);
           start.hidden = false;
           pause.hidden = true;
           form.submit.setAttribute('class', 'start-pause')
