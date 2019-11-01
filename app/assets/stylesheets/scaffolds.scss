@@ -89,6 +89,7 @@ label {
 }
 
 .login .form-control {
+  margin-left: 0;
   border-radius: 4px;
   width: 200px;
 }
@@ -113,6 +114,7 @@ form.simple_form.new_user {
 }
 
 .sign_up_page .form-control {
+  margin-left: 0;
   border-radius: 4px;
   width: 200px;
 }
@@ -127,7 +129,6 @@ form.simple_form.new_user {
 }
 
 input.string {
-  margin-left: -5px;
   height: 33.6px;
   border-radius: 4px;
   width: 200px;
