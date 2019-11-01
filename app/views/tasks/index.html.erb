@@ -2,9 +2,9 @@
 <div class="filter">
     <%= form_for"", url: tasks_path, role: "search", method: :get  do |f|%>
    <%if  params[:project_id].present?%>
-   <%= f.select(:project_id, projects_for_select, {selected: params[:project_id]}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+   <%= f.select(:project_id, projects_for_select_tasks, {selected: params[:project_id]}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
    <% else %>
-   <%= f.select(:project_id, projects_for_select, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
+   <%= f.select(:project_id, projects_for_select_tasks, {prompt: 'Select name projects'}, {class: 'btn btn-outline-secondary dropdown-toggle', id: 'select'}) %>
    <% end %>
     Create between:
     <%= date_field_tag(:search_date_1, @date_1)%>
