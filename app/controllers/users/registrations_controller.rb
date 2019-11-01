@@ -5,16 +5,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  #def new
-     #@register = User.add_customer(registration_params)
-
-  #end
+  def new
+    @user = User.new
+    @user.сustomers.build
+  end
 
   # POST /resource
   def create
     #@register = Customer.new(registration_params)
-    @customer = Customer.new(name: params[:name], user_id: current_user)
-    @transaction.save
+    #@customer = Customer.new(name: params[:name], user_id: current_user)
+    #@customer.save
+    @user = User.new(user_params)
+    @user.save #-> notice how this saves the @user model only?
   end
 
   # GET /resource/edit
@@ -62,8 +64,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  #private
-    #def registration_params
-      #params.require(:customer).permit(:name, :user_id)
-    #end
+
+  private
+    def user_params
+      params.require(:user).permit(:user, :attributes, сustomers_attributes: [:сustomers, :attributes])
+    end
 end

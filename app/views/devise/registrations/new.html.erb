@@ -1,6 +1,7 @@
 <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= #simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for @user do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -15,8 +16,10 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= @customer.input :name,
-                            input_html: { autocomplete: "customer name" }%>
+
+   <%= f.fields_for :сustomers do |h| %>
+       <%= h.input :name %>
+   <% end %>
   </div>
 
   <div class="form-actions">
