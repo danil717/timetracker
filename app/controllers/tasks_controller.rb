@@ -20,11 +20,19 @@ class TasksController < ApplicationController
 
       @date_1 = params[:search_date_1]
       @date_2 = params[:search_date_2]
-      if params[:long_short].present?
-        @is_checked = true
 
+      if params[:long_short].present? 
+        @is_checked = true
+         @is_checked2 = false     
       else 
       @is_checked = false
+      end
+
+       if params[:short_long].present?
+        @is_checked2 = true
+        @is_checked = false
+      else
+        @is_checked2 = false
       end
 
       @tasks_index.each do |t|

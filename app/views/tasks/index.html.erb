@@ -10,10 +10,10 @@
     <%= date_field_tag(:search_date_1, @date_1)%>
     <%= date_field_tag(:search_date_2, @date_2)%>
     Long to short:
-    <%= check_box_tag(:long_short, true, false, options = {}) %>
+    <%= check_box_tag(:long_short,{},  @is_checked) %>
     Short to long:
-    <%= check_box_tag(:short_long, true, false, options = {}) %>
-    <%= f.submit "Submit", class: 'btn btn-success' %>
+    <%= check_box_tag(:short_long,{}, @is_checked2) %>
+    <%= f.submit "Submit" %>
     <% end %>
 </div>
 
