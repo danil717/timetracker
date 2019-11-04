@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
-  end 
+  end
 
   # GET /customers/1/edit
   def edit
@@ -65,7 +65,7 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find(params[:id]) rescue render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

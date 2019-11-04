@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   resources :tasks do
     post 'completion', on: :member
   end
+
+  Rails.application.routes.draw do
+    # having created corresponding controller and action
+    get '*path', to: 'errors#error_404', via: :all
+  end
 end

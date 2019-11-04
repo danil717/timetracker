@@ -8,6 +8,9 @@
                <li><%= link_to "Home", root_path, id: "home" %></li>
                <li><%= link_to "Tasks", tasks_path, id: "tasks" %></li>
                <% if current_user %>
+                  <% if current_user.customer? %>
+                    <li><%= link_to "Projects", projects_path, id: "tasks" %></li>
+                  <% end %>
                  <li>
                    <%= link_to('Logout', destroy_user_session_path, method: :delete, id:"logout") %>
                  </li>

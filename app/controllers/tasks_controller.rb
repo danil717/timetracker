@@ -123,7 +123,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.select('tasks.*, projects.name AS project_name').joins(:project).find(params[:id])
+      @task = Task.select('tasks.*, projects.name AS project_name').joins(:project).find(params[:id]) rescue render_404
     end
 
     def end_task
