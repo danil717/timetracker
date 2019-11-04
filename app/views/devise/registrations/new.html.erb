@@ -16,9 +16,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password", class: 'form-control' } %>
-    <%= f.fields_for :сustomers do |h| %>
-      <%= h.input 'Name', class: 'form-control' %>
-    <% end %>
+  
   </div>
 
   <div class="form-actions">
