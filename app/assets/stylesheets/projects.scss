@@ -1,3 +1,38 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project_table {
+  width: 85%;
+}
+
+.new_project_project_tasks {
+  display: inline-block;
+  margin-top: 40px;
+  float: right;
+  margin-right: 20%;
+}
+
+.field .form-control {
+  margin-left: 0;
+  width: 210px;
+}
+
+.new_page {
+  margin-left: 20px;
+}
+
+.field label {
+  font-size: 16px;
+}
+
+.new_project_new_page {
+  margin-left: 25px;
+  display: block;
+}
+
+.back_on_new_page {
+  margin-left: 25px;
+  display: block;
+  font-size: 16px;
+}
