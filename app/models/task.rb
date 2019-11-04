@@ -21,7 +21,7 @@ class Task < ApplicationRecord
 
   scope :proj_name_for_current_user, -> {
     select('tasks.*, users.id AS user_id_task, projects.name AS project_name').joins(:project).joins(:user)
-  } 
+  }
   #def self.search_by(search_term)
    # proj_name.where("LOWER(projects.name) LIKE :search_term", search_term: "#{search_term.downcase}%")
   #end

@@ -27,7 +27,7 @@
      <tr>
         <th>Project</th>
         <th>User</th>
-        <th>End time</th>
+        <th>Start / End time</th>
         <th colspan="2">Description</th>
         <th colspan="2"></th>
       </tr>
@@ -36,7 +36,7 @@
         <tr>
           <td><%= task.project_name %></td>
           <td><%= task.user_id %></td>
-          <td><%= task.end_time %></td>
+          <td><%= task.created_at %> / <%= task.end_time %></td>
           <td colspan="2"><%= task.description %></td>
           <td colspan="2">
             <% if current_user.admin? %>

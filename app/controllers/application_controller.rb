@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
     redirect_to new_user_session_path unless current_user
 
-    task_not_finished = Task.where(id: current_user).not_finished.first
+    task_not_finished = Task.where(user_id: current_user).not_finished.first
 
     @task = task_not_finished || Task.new
 
