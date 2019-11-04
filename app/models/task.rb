@@ -41,11 +41,11 @@ class Task < ApplicationRecord
   }
 
   scope :search_by_length_desc, ->(time_length) {
-   select('*, (tasks.end_time - tasks.created_at) as diff_time').order('diff_time DESC') if time_length.present?
+   select('*, tasks.description, (tasks.end_time - tasks.created_at) as diff_time').order('diff_time DESC') if time_length.present?
   }
 
   scope :search_by_length_asc, ->(time_length2) {
-   select('*, (tasks.end_time - tasks.created_at) as diff_time').order('diff_time ASC') if time_length2.present?
+   select('*, tasks.description,(tasks.end_time - tasks.created_at) as diff_time').order('diff_time ASC') if time_length2.present?
   }
 
 
